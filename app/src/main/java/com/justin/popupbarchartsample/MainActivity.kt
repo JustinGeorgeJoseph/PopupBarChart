@@ -64,6 +64,8 @@ class MainActivity : AppCompatActivity() {
                     ),
                 )
             )
+
+            animateProgress()
         }
     }
 }

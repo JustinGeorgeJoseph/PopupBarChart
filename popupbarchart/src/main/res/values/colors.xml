@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2022 Justin George
+  ~
+  ~    Licensed under the Apache License, Version 2.0 (the "License");
+  ~    you may not use this file except in compliance with the License.
+  ~    You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~    Unless required by applicable law or agreed to in writing, software
+  ~    distributed under the License is distributed on an "AS IS" BASIS,
+  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~    See the License for the specific language governing permissions and
+  ~    limitations under the License.
+  ~
+  -->
+
+<resources>
+
+    //Bar's background color
+    <color name="bg_bar_graph_green_start">#39D1B4</color>
+    <color name="bg_bar_graph_green_end">#A639D1B4</color>
+
+    <color name="grey_a7">#a7aab1</color>
+    <color name="grey_b2b2">#b2b2b2</color>
+
+    <color name="black_2121">#212121</color>
+
+    <color name="white">#ffffff</color>
+    <color name="white_f0">#f0f0f0</color>
+
+</resources>

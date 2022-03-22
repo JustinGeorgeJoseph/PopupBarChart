@@ -1,4 +1,4 @@
-package com.ganvian.popupbarchart
+package com.justin.popupbarchartsample
 
 import org.junit.Test
 

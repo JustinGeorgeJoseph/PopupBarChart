@@ -78,7 +78,7 @@ class CustomBarChart @JvmOverloads constructor(
     /* other values*/
     private val listGraphValues = arrayListOf<GraphValue>()
 
-    val colors = intArrayOf(
+    var colors = intArrayOf(
         ContextCompat.getColor(context,
             R.color.bg_bar_graph_green_start),
         ContextCompat.getColor(context,
@@ -187,7 +187,22 @@ class CustomBarChart @JvmOverloads constructor(
     init {
         setWillNotDraw(false)
         setLayerType(LAYER_TYPE_SOFTWARE, null)
-        ViewCompat.setLayerType(this, ViewCompat.LAYER_TYPE_SOFTWARE, null)
+        //ViewCompat.setLayerType(this, ViewCompat.LAYER_TYPE_SOFTWARE, null)
+
+        val attributes = context.obtainStyledAttributes(attrs, R.styleable.CustomBarChartStyle)
+
+        var endColor = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_start_color, -1)
+        var startColor = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_end_color, -1)
+
+        if (startColor==-1 || endColor == -1){
+            startColor = (startColor*endColor)*-1
+            endColor = startColor
+        }
+
+        colors = intArrayOf(
+            ContextCompat.getColor(context,startColor),
+            ContextCompat.getColor(context,endColor),
+        )
 
         mProgressAnimator.setFloatValues(minFraction,maxFraction)
         mProgressAnimator.addUpdateListener { animation ->

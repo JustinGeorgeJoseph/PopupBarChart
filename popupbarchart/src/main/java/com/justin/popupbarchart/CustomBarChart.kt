@@ -119,7 +119,7 @@ class CustomBarChart @JvmOverloads constructor(
     /*
     * Used to Paint Day indications eg: Day 1, Day 2, Day 3
     * */
-    private val mDayTextPaint: TextPaint = object : TextPaint(ANTI_ALIAS_FLAG) {
+    private var mDayTextPaint: TextPaint = object : TextPaint(ANTI_ALIAS_FLAG) {
         init {
             this.color = ContextCompat.getColor(context, R.color.grey_b2b2)
             this.textSize = context.spToPx(10)
@@ -187,16 +187,25 @@ class CustomBarChart @JvmOverloads constructor(
     init {
         setWillNotDraw(false)
         setLayerType(LAYER_TYPE_SOFTWARE, null)
-        //ViewCompat.setLayerType(this, ViewCompat.LAYER_TYPE_SOFTWARE, null)
 
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.CustomBarChartStyle)
 
         var endColor = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_start_color, -1)
         var startColor = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_end_color, -1)
+        var barTextColor = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_text_color, -1)
 
-        if (startColor==-1 || endColor == -1){
-            startColor = (startColor*endColor)*-1
+        if (startColor == -1 || endColor == -1) {
+            startColor = (startColor * endColor) * -1
             endColor = startColor
+        }
+
+        if (barTextColor != -1){
+            mDayTextPaint = object : TextPaint(ANTI_ALIAS_FLAG) {
+                init {
+                    this.color = ContextCompat.getColor(context, barTextColor)
+                    this.textSize = context.spToPx(10)
+                }
+            }
         }
 
         colors = intArrayOf(

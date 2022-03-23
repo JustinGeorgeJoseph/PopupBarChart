@@ -19,5 +19,6 @@
     <declare-styleable name="CustomBarChartStyle">
         <attr name="chart_bar_start_color" format="reference" />
         <attr name="chart_bar_end_color" format="reference" />
+        <attr name ="chart_bar_text_color" format="reference"/>
     </declare-styleable>
 </resources>

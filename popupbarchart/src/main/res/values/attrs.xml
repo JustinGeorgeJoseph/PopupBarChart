@@ -17,8 +17,14 @@
 
 <resources>
     <declare-styleable name="CustomBarChartStyle">
+        <!--Chart bar attributes-->
         <attr name="chart_bar_start_color" format="reference" />
         <attr name="chart_bar_end_color" format="reference" />
+
+        <!--Chart bar bottom text attributes-->
         <attr name ="chart_bar_text_color" format="reference"/>
+        <attr name ="chart_bar_text_size" format="dimension"/>
+        <attr name="chart_bar_text_family" format="reference"/>
+
     </declare-styleable>
 </resources>

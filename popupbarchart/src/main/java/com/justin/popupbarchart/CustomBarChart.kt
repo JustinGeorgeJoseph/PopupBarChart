@@ -27,6 +27,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
 
 data class GraphModel(val splitRect: SplitRect, val graphBarRect: GraphBarRect)
@@ -119,7 +120,7 @@ class CustomBarChart @JvmOverloads constructor(
     /*
     * Used to Paint Day indications eg: Day 1, Day 2, Day 3
     * */
-    private var mDayTextPaint: TextPaint = object : TextPaint(ANTI_ALIAS_FLAG) {
+    private val mDayTextPaint: TextPaint = object : TextPaint(ANTI_ALIAS_FLAG) {
         init {
             this.color = ContextCompat.getColor(context, R.color.grey_b2b2)
             this.textSize = context.spToPx(10)
@@ -192,21 +193,23 @@ class CustomBarChart @JvmOverloads constructor(
 
         var endColor = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_start_color, -1)
         var startColor = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_end_color, -1)
-        var barTextColor = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_text_color, -1)
+
+        val barTextColor = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_text_color, -1)
+        val barTextSize = attributes.getDimensionPixelSize(R.styleable.CustomBarChartStyle_chart_bar_text_size, context.spToPx(10).toInt())
+        val barTextFontFamily = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_text_family, -1)
 
         if (startColor == -1 || endColor == -1) {
             startColor = (startColor * endColor) * -1
             endColor = startColor
         }
 
-        if (barTextColor != -1){
-            mDayTextPaint = object : TextPaint(ANTI_ALIAS_FLAG) {
-                init {
-                    this.color = ContextCompat.getColor(context, barTextColor)
-                    this.textSize = context.spToPx(10)
-                }
-            }
+        mDayTextPaint.apply {
+            if (barTextColor != -1) color = ContextCompat.getColor(context, barTextColor)
+            textSize = barTextSize.toFloat()
+            if (barTextFontFamily !=-1)
+            typeface = ResourcesCompat.getFont(context, barTextFontFamily)
         }
+
 
         colors = intArrayOf(
             ContextCompat.getColor(context,startColor),

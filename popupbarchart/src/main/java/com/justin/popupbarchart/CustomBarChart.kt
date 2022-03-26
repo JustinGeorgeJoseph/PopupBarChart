@@ -198,6 +198,8 @@ class CustomBarChart @JvmOverloads constructor(
         val barTextSize = attributes.getDimensionPixelSize(R.styleable.CustomBarChartStyle_chart_bar_text_size, context.spToPx(10).toInt())
         val barTextFontFamily = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_text_family, -1)
 
+        val toolTipBg = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_tooltip_bg_color, -1)
+
         if (startColor == -1 || endColor == -1) {
             startColor = (startColor * endColor) * -1
             endColor = startColor
@@ -209,6 +211,9 @@ class CustomBarChart @JvmOverloads constructor(
             if (barTextFontFamily !=-1)
             typeface = ResourcesCompat.getFont(context, barTextFontFamily)
         }
+
+        if (toolTipBg != -1)
+            tooltipBgPaint.color = ContextCompat.getColor(context, toolTipBg)
 
 
         colors = intArrayOf(

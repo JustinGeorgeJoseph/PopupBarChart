@@ -10,12 +10,24 @@
         android:id="@+id/customBarchart"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+
         app:chart_bar_start_color="@android:color/holo_red_dark"
         app:chart_bar_end_color="@android:color/holo_green_dark"
-        app:chart_bar_text_color="@android:color/holo_blue_bright"
-        app:chart_bar_tooltip_bg_color="@android:color/holo_red_dark"
-        app:chart_bar_text_size="10dp"
+
+        app:chart_bar_text_size="10sp"
         app:chart_bar_text_family="@font/rubik_italic"
+        app:chart_bar_text_color="@android:color/holo_blue_bright"
+
+        app:chart_bar_tooltip_bg_color="@android:color/holo_red_dark"
+
+        app:chart_bar_tooltip_title_text_size="10sp"
+        app:chart_bar_tooltip_title_text_family="@font/rubik_italic"
+        app:chart_bar_tooltip_title_text_color="@android:color/holo_blue_bright"
+
+        app:chart_bar_tooltip_subtitle_text_size="10sp"
+        app:chart_bar_tooltip_subtitle_text_family="@font/rubik_medium"
+        app:chart_bar_tooltip_subtitle_text_color="@android:color/holo_green_dark"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

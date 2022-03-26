@@ -27,7 +27,13 @@
         <attr name="chart_bar_text_family" format="reference"/>
 
         <!--Tooltip attributes-->
-        <attr name ="chart_bar_tooltip_bg_color" format="reference"/>
+        <attr name="chart_bar_tooltip_bg_color" format="reference" />
+        <attr name="chart_bar_tooltip_title_text_color" format="reference" />
+        <attr name="chart_bar_tooltip_title_text_size" format="dimension" />
+        <attr name="chart_bar_tooltip_title_text_family" format="reference" />
+        <attr name="chart_bar_tooltip_subtitle_text_color" format="reference" />
+        <attr name="chart_bar_tooltip_subtitle_text_size" format="dimension" />
+        <attr name="chart_bar_tooltip_subtitle_text_family" format="reference" />
 
     </declare-styleable>
 </resources>

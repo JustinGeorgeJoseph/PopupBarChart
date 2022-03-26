@@ -153,7 +153,6 @@ class CustomBarChart @JvmOverloads constructor(
     }
 
 
-
     private val percentagePaint: TextPaint = object : TextPaint(ANTI_ALIAS_FLAG) {
         init {
             color = ContextCompat.getColor(context, R.color.white)
@@ -167,8 +166,6 @@ class CustomBarChart @JvmOverloads constructor(
             this.textSize = context.spToPx(8)
         }
     }
-
-
 
     private val tooltipBgPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.BLACK
@@ -198,7 +195,13 @@ class CustomBarChart @JvmOverloads constructor(
         val barTextSize = attributes.getDimensionPixelSize(R.styleable.CustomBarChartStyle_chart_bar_text_size, context.spToPx(10).toInt())
         val barTextFontFamily = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_text_family, -1)
 
-        val toolTipBg = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_tooltip_bg_color, -1)
+        val tooltipBg = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_tooltip_bg_color, -1)
+        val tooltipTitleTextColor = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_tooltip_title_text_color, -1)
+        val tooltipTitleTextFontFamily = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_tooltip_title_text_family, -1)
+        val tooltipTitleTextSize = attributes.getDimensionPixelSize(R.styleable.CustomBarChartStyle_chart_bar_tooltip_title_text_size, context.spToPx(10).toInt())
+        val tooltipSubTitleTextColor = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_tooltip_subtitle_text_color, -1)
+        val tooltipSubTitleTextFontFamily = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_tooltip_subtitle_text_family, -1)
+        val tooltipSubTitleTextSize = attributes.getDimensionPixelSize(R.styleable.CustomBarChartStyle_chart_bar_tooltip_subtitle_text_size, context.spToPx(10).toInt())
 
         if (startColor == -1 || endColor == -1) {
             startColor = (startColor * endColor) * -1
@@ -206,15 +209,36 @@ class CustomBarChart @JvmOverloads constructor(
         }
 
         mDayTextPaint.apply {
-            if (barTextColor != -1) color = ContextCompat.getColor(context, barTextColor)
-            textSize = barTextSize.toFloat()
-            if (barTextFontFamily !=-1)
-            typeface = ResourcesCompat.getFont(context, barTextFontFamily)
+            if (barTextColor != -1)
+                color = ContextCompat.getColor(context, barTextColor)
+            if (barTextSize != -1)
+                textSize = barTextSize.toFloat()
+            if (barTextFontFamily != -1)
+                typeface = ResourcesCompat.getFont(context, barTextFontFamily)
         }
 
-        if (toolTipBg != -1)
-            tooltipBgPaint.color = ContextCompat.getColor(context, toolTipBg)
+        tooltipBgPaint.apply {
+            if (tooltipBg != -1)
+                color = ContextCompat.getColor(context, tooltipBg)
+        }
 
+        completedPaint.apply {
+            if (tooltipTitleTextColor != -1)
+                color = ContextCompat.getColor(context, tooltipTitleTextColor)
+            if (tooltipTitleTextSize != -1)
+                textSize = tooltipTitleTextSize.toFloat()
+            if (tooltipTitleTextFontFamily != -1)
+                typeface = ResourcesCompat.getFont(context, tooltipTitleTextFontFamily)
+        }
+
+        percentagePaint.apply {
+            if (tooltipSubTitleTextColor != -1)
+                color = ContextCompat.getColor(context, tooltipSubTitleTextColor)
+            if (tooltipSubTitleTextSize != -1)
+                textSize = tooltipSubTitleTextSize.toFloat()
+            if (tooltipSubTitleTextFontFamily != -1)
+                typeface = ResourcesCompat.getFont(context, tooltipSubTitleTextFontFamily)
+        }
 
         colors = intArrayOf(
             ContextCompat.getColor(context,startColor),

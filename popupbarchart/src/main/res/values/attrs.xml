@@ -26,5 +26,8 @@
         <attr name ="chart_bar_text_size" format="dimension"/>
         <attr name="chart_bar_text_family" format="reference"/>
 
+        <!--Tooltip attributes-->
+        <attr name ="chart_bar_tooltip_bg_color" format="reference"/>
+
     </declare-styleable>
 </resources>

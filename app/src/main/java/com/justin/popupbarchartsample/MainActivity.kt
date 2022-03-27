@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        findViewById<CustomBarChart>(R.id.customBarchart).apply {
+        val view = findViewById<CustomBarChart>(R.id.customBarchart).apply {
             setGraphValues(
                 arrayListOf(
                     GraphValue(

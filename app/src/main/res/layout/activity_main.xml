@@ -13,6 +13,9 @@
 
         app:chart_bar_start_color="@android:color/holo_red_dark"
         app:chart_bar_end_color="@android:color/holo_green_dark"
+        app:chart_bar_round_corner="true"
+        app:chart_bar_size="8dp"
+        app:chart_bar_secondary_color="@android:color/holo_blue_bright"
 
         app:chart_bar_text_size="10sp"
         app:chart_bar_text_family="@font/rubik_italic"

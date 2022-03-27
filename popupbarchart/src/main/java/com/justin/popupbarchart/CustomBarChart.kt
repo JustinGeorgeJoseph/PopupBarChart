@@ -22,6 +22,7 @@ import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
+import android.icu.lang.UCharacter.DecompositionType.SQUARE
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -102,20 +103,6 @@ class CustomBarChart @JvmOverloads constructor(
     private var mActionMoveModelIndex: Int = disableAnimateIndex
     private var mAnimatedFraction = 0f
 
-    val mProgressPaint: Paint = object : Paint(
-        ANTI_ALIAS_FLAG) {
-        init {
-            isDither = true
-            style = Style.STROKE
-            strokeWidth = barWidth
-            style = Style.STROKE
-            strokeCap = Cap.ROUND
-            strokeJoin = Join.ROUND
-            this.color = ContextCompat.getColor(context, R.color.grey_a7)
-
-        }
-    }
-
 
     /*
     * Used to Paint Day indications eg: Day 1, Day 2, Day 3
@@ -138,6 +125,20 @@ class CustomBarChart @JvmOverloads constructor(
         }
     }
 
+
+    val mProgressPaint: Paint = object : Paint(
+        ANTI_ALIAS_FLAG) {
+        init {
+            isDither = true
+            style = Style.STROKE
+            strokeWidth = barWidth
+            style = Style.STROKE
+            strokeCap = Cap.ROUND
+            strokeJoin = Join.ROUND
+            this.color = ContextCompat.getColor(context, R.color.grey_a7)
+
+        }
+    }
 
     private val mProgressBGPaint: Paint = object : Paint(
         ANTI_ALIAS_FLAG) {
@@ -190,6 +191,9 @@ class CustomBarChart @JvmOverloads constructor(
 
         var endColor = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_start_color, -1)
         var startColor = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_end_color, -1)
+        var roundCorner = attributes.getBoolean(R.styleable.CustomBarChartStyle_chart_bar_round_corner, true)
+        val barSize = attributes.getDimensionPixelSize(R.styleable.CustomBarChartStyle_chart_bar_size, context.dpToPx(16).toInt())
+        val secondaryColor = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_secondary_color, -1)
 
         val barTextColor = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_text_color, -1)
         val barTextSize = attributes.getDimensionPixelSize(R.styleable.CustomBarChartStyle_chart_bar_text_size, context.spToPx(10).toInt())
@@ -238,6 +242,30 @@ class CustomBarChart @JvmOverloads constructor(
                 textSize = tooltipSubTitleTextSize.toFloat()
             if (tooltipSubTitleTextFontFamily != -1)
                 typeface = ResourcesCompat.getFont(context, tooltipSubTitleTextFontFamily)
+        }
+
+        mProgressBGPaint.apply {
+            strokeWidth = barSize.toFloat()
+            if (roundCorner) {
+                strokeCap = Paint.Cap.ROUND
+                strokeJoin = Paint.Join.ROUND
+            } else {
+                strokeCap = Paint.Cap.SQUARE
+                strokeJoin = Paint.Join.BEVEL
+            }
+            if (secondaryColor != -1)
+                this.color = ContextCompat.getColor(context, secondaryColor)
+        }
+
+        mProgressPaint.apply {
+            strokeWidth = barSize.toFloat()
+            if (roundCorner) {
+                strokeCap = Paint.Cap.ROUND
+                strokeJoin = Paint.Join.ROUND
+            } else {
+                strokeCap = Paint.Cap.SQUARE
+                strokeJoin = Paint.Join.BEVEL
+            }
         }
 
         colors = intArrayOf(

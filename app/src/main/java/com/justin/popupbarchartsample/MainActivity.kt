@@ -1,9 +1,15 @@
 package com.justin.popupbarchartsample
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import com.justin.popupbarchart.CustomBarChart
 import com.justin.popupbarchart.GraphValue
+import com.skydoves.colorpickerview.ColorPickerDialog
+import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,6 +72,23 @@ class MainActivity : AppCompatActivity() {
             )
 
             animateProgress()
+        }
+
+        findViewById<AppCompatButton>(R.id.colorPicker).setOnClickListener {
+            ColorPickerDialog.Builder(this)
+                .setTitle("ColorPicker Dialog")
+                .setPreferenceName("MyColorPickerDialog")
+                .setPositiveButton("confirm",
+                    ColorEnvelopeListener { envelope, fromUser ->
+                        Log.d("TAG_JUSTIN","--> ${envelope.color} || ${envelope.argb} || ${envelope.hexCode}")
+                    })
+                .setNegativeButton("Cancel") {
+                        dialogInterface, i -> dialogInterface.dismiss()
+                }
+                .attachAlphaSlideBar(true) // the default value is true.
+                .attachBrightnessSlideBar(true) // the default value is true.
+                .setBottomSpace(12) // set a bottom space between the last slidebar and buttons.
+                .show()
         }
     }
 }

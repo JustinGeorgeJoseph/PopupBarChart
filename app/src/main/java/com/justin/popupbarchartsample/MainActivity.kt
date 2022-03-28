@@ -72,13 +72,20 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
+
+
+        findViewById<CheckBox>(R.id.cb_round_corner).setOnCheckedChangeListener { compoundButton, b ->
+            widget.roundCorner = b
+        }
+
         findViewById<AppCompatButton>(R.id.colorPicker).setOnClickListener {
             ColorPickerDialog.Builder(this)
-                .setTitle("ColorPicker Dialog")
-                .setPreferenceName("MyColorPickerDialog")
+                .setTitle("Choose secondary color")
+                .setPreferenceName("secondaryColor")
                 .setPositiveButton("confirm",
                     ColorEnvelopeListener { envelope, fromUser ->
                         Log.d("TAG_JUSTIN","--> ${envelope.color} || ${envelope.argb} || ${envelope.hexCode}")
+                        widget.secondaryColor = envelope.color
                     })
                 .setNegativeButton("Cancel") {
                         dialogInterface, i -> dialogInterface.dismiss()
@@ -89,8 +96,43 @@ class MainActivity : AppCompatActivity() {
                 .show()
         }
 
-        findViewById<CheckBox>(R.id.cb_round_corner).setOnCheckedChangeListener { compoundButton, b ->
-            widget.roundCorner = b
+
+
+        findViewById<AppCompatButton>(R.id.colorPickerStartColor).setOnClickListener {
+            ColorPickerDialog.Builder(this)
+                .setTitle("Choose Start color")
+                .setPreferenceName("startColor")
+                .setPositiveButton("confirm",
+                    ColorEnvelopeListener { envelope, fromUser ->
+                        Log.d("TAG_JUSTIN","--> ${envelope.color} || ${envelope.argb} || ${envelope.hexCode}")
+                        widget.startColor = envelope.color
+                    })
+                .setNegativeButton("Cancel") {
+                        dialogInterface, i -> dialogInterface.dismiss()
+                }
+                .attachAlphaSlideBar(true) // the default value is true.
+                .attachBrightnessSlideBar(true) // the default value is true.
+                .setBottomSpace(12) // set a bottom space between the last slidebar and buttons.
+                .show()
+        }
+
+
+        findViewById<AppCompatButton>(R.id.colorPickerEndColor).setOnClickListener {
+            ColorPickerDialog.Builder(this)
+                .setTitle("Choose end color")
+                .setPreferenceName("endColor")
+                .setPositiveButton("confirm",
+                    ColorEnvelopeListener { envelope, fromUser ->
+                        Log.d("TAG_JUSTIN","--> ${envelope.color} || ${envelope.argb} || ${envelope.hexCode}")
+                        widget.endColor = envelope.color
+                    })
+                .setNegativeButton("Cancel") {
+                        dialogInterface, i -> dialogInterface.dismiss()
+                }
+                .attachAlphaSlideBar(true) // the default value is true.
+                .attachBrightnessSlideBar(true) // the default value is true.
+                .setBottomSpace(12) // set a bottom space between the last slidebar and buttons.
+                .show()
         }
     }
 }

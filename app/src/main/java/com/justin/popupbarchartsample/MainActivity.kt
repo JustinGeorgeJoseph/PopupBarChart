@@ -2,10 +2,10 @@ package com.justin.popupbarchartsample
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
+import android.widget.CheckBox
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import com.justin.popupbarchart.CustomBarChart
+import com.justin.popupbarchart.PopupBarChart
 import com.justin.popupbarchart.GraphValue
 import com.skydoves.colorpickerview.ColorPickerDialog
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val view = findViewById<CustomBarChart>(R.id.customBarchart).apply {
+        val widget = findViewById<PopupBarChart>(R.id.customBarchart).apply {
             setGraphValues(
                 arrayListOf(
                     GraphValue(
@@ -70,8 +70,6 @@ class MainActivity : AppCompatActivity() {
                     ),
                 )
             )
-
-            animateProgress()
         }
 
         findViewById<AppCompatButton>(R.id.colorPicker).setOnClickListener {
@@ -89,6 +87,10 @@ class MainActivity : AppCompatActivity() {
                 .attachBrightnessSlideBar(true) // the default value is true.
                 .setBottomSpace(12) // set a bottom space between the last slidebar and buttons.
                 .show()
+        }
+
+        findViewById<CheckBox>(R.id.cb_round_corner).setOnCheckedChangeListener { compoundButton, b ->
+            widget.roundCorner = b
         }
     }
 }

@@ -18,11 +18,11 @@
 <resources>
     <declare-styleable name="PopupBarChart">
         <!--Chart bar attributes-->
-        <attr name="chart_bar_start_color" format="reference" />
-        <attr name="chart_bar_end_color" format="reference" />
+        <attr name="chart_bar_start_color" format="color" />
+        <attr name="chart_bar_end_color" format="color" />
         <attr name="chart_bar_round_corner" format="boolean" />
         <attr name="chart_bar_size" format="dimension" />
-        <attr name="chart_bar_secondary_color" format="reference" />
+        <attr name="chart_bar_secondary_color" format="color" />
 
         <!--Chart bar bottom text attributes-->
         <attr name ="chart_bar_text_color" format="reference"/>

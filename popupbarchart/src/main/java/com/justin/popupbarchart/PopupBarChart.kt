@@ -48,6 +48,9 @@ class PopupBarChart @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null,
 ) : View(context, attrs) {
 
+    private var widgetWidth = 0
+    private var widgetHeight = 0
+
     /*Tooltip variables*/
     private val topPoint = 10f
     private val padding = context.dpToPx( 7)
@@ -102,8 +105,36 @@ class PopupBarChart @JvmOverloads constructor(
     private var mAnimatedFraction = 0f
 
     //Graph attributes
-    private var endColor = -1
-    private var startColor = -1
+    var endColor = ContextCompat.getColor(context, R.color.bg_bar_graph_green_end)
+    set(value) {
+        field = value
+        mProgressPaint.shader = LinearGradient(0f,
+            0f,
+            0f,
+            widgetHeight.toFloat(),
+            intArrayOf(
+                field,
+                startColor,
+            ),
+            null,
+            Shader.TileMode.MIRROR)
+        postInvalidate()
+    }
+    var startColor = ContextCompat.getColor(context, R.color.bg_bar_graph_green_start)
+        set(value) {
+            field = value
+            mProgressPaint.shader = LinearGradient(0f,
+                0f,
+                0f,
+                widgetHeight.toFloat(),
+                intArrayOf(
+                    endColor,
+                    field,
+                ),
+                null,
+                Shader.TileMode.MIRROR)
+            postInvalidate()
+        }
     var roundCorner = true
         set(value) {
             field = value
@@ -217,11 +248,11 @@ class PopupBarChart @JvmOverloads constructor(
 
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.PopupBarChart)
 
-        endColor = attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_start_color, -1)
-        startColor = attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_end_color, -1)
+        endColor = attributes.getColor(R.styleable.PopupBarChart_chart_bar_start_color, -1)
+        startColor = attributes.getColor(R.styleable.PopupBarChart_chart_bar_end_color, -1)
         roundCorner = attributes.getBoolean(R.styleable.PopupBarChart_chart_bar_round_corner, true)
         barSize = attributes.getDimensionPixelSize(R.styleable.PopupBarChart_chart_bar_size, context.dpToPx(16).toInt())
-        secondaryColor = attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_secondary_color, -1)
+        secondaryColor = attributes.getColor(R.styleable.PopupBarChart_chart_bar_secondary_color, -1)
 
         barTextColor = attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_text_color, -1)
         barTextSize = attributes.getDimensionPixelSize(R.styleable.PopupBarChart_chart_bar_text_size, context.spToPx(10).toInt())
@@ -297,8 +328,8 @@ class PopupBarChart @JvmOverloads constructor(
         }*/
 
         colors = intArrayOf(
-            ContextCompat.getColor(context,startColor),
-            ContextCompat.getColor(context,endColor),
+            startColor,
+            endColor,
         )
 
         mProgressAnimator.setFloatValues(minFraction,maxFraction)
@@ -337,8 +368,9 @@ class PopupBarChart @JvmOverloads constructor(
     private fun setBarSecondaryColor(secondaryColor: Int) {
         mProgressBGPaint.apply {
             if (secondaryColor != -1)
-                this.color = ContextCompat.getColor(context, secondaryColor)
+                this.color = secondaryColor
         }
+        postInvalidate()
     }
 
     fun animateProgress() {
@@ -357,11 +389,11 @@ class PopupBarChart @JvmOverloads constructor(
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val width = MeasureSpec.getSize(widthMeasureSpec)
-        val height = MeasureSpec.getSize(heightMeasureSpec)
+        widgetWidth = MeasureSpec.getSize(widthMeasureSpec)
+        widgetHeight = MeasureSpec.getSize(heightMeasureSpec)
         calculateDefaultTooltipSize(percentageText = percentageText)
-        val requiredWidth = width -  graphLeftAndRightPadding
-        calculateGraphValues(requiredWidth.toInt(), height)
+        val requiredWidth = widgetWidth -  graphLeftAndRightPadding
+        calculateGraphValues(requiredWidth.toInt(), widgetHeight)
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
     }
 

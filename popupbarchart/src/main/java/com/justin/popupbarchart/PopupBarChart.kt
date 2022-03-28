@@ -22,14 +22,12 @@ import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
-import android.icu.lang.UCharacter.DecompositionType.SQUARE
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.ViewCompat
 
 data class GraphModel(val splitRect: SplitRect, val graphBarRect: GraphBarRect)
 
@@ -46,7 +44,7 @@ data class GraphBarRect(val left: Float) {
 }
 
 @SuppressLint("WrongConstant")
-class CustomBarChart @JvmOverloads constructor(
+class PopupBarChart @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null,
 ) : View(context, attrs) {
 
@@ -103,6 +101,36 @@ class CustomBarChart @JvmOverloads constructor(
     private var mActionMoveModelIndex: Int = disableAnimateIndex
     private var mAnimatedFraction = 0f
 
+    //Graph attributes
+    private var endColor = -1
+    private var startColor = -1
+    var roundCorner = true
+        set(value) {
+            field = value
+            setBarRoundCorner(field)
+        }
+
+    var secondaryColor = -1
+    set(value) {
+        field = value
+        setBarSecondaryColor(field)
+    }
+
+    var barSize = context.dpToPx(16).toInt()
+
+    var barTextColor = -1
+    var barTextFontFamily = -1
+    var barTextSize = context.spToPx(10).toInt()
+
+    var tooltipBg = -1
+    var tooltipTitleTextColor = -1
+    var tooltipSubTitleTextColor = -1
+    var tooltipTitleTextFontFamily = -1
+    var tooltipSubTitleTextFontFamily = -1
+    var tooltipTitleTextSize = context.spToPx(10).toInt()
+    var tooltipSubTitleTextSize = context.spToPx(10).toInt()
+
+
 
     /*
     * Used to Paint Day indications eg: Day 1, Day 2, Day 3
@@ -126,7 +154,7 @@ class CustomBarChart @JvmOverloads constructor(
     }
 
 
-    val mProgressPaint: Paint = object : Paint(
+    private val mProgressPaint: Paint = object : Paint(
         ANTI_ALIAS_FLAG) {
         init {
             isDither = true
@@ -180,32 +208,32 @@ class CustomBarChart @JvmOverloads constructor(
     fun setGraphValues(graphValue: List<GraphValue>) {
         listGraphValues.clear()
         listGraphValues.addAll(graphValue)
-        //postInvalidate()
+        animateProgress()
     }
 
     init {
         setWillNotDraw(false)
         setLayerType(LAYER_TYPE_SOFTWARE, null)
 
-        val attributes = context.obtainStyledAttributes(attrs, R.styleable.CustomBarChartStyle)
+        val attributes = context.obtainStyledAttributes(attrs, R.styleable.PopupBarChart)
 
-        var endColor = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_start_color, -1)
-        var startColor = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_end_color, -1)
-        var roundCorner = attributes.getBoolean(R.styleable.CustomBarChartStyle_chart_bar_round_corner, true)
-        val barSize = attributes.getDimensionPixelSize(R.styleable.CustomBarChartStyle_chart_bar_size, context.dpToPx(16).toInt())
-        val secondaryColor = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_secondary_color, -1)
+        endColor = attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_start_color, -1)
+        startColor = attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_end_color, -1)
+        roundCorner = attributes.getBoolean(R.styleable.PopupBarChart_chart_bar_round_corner, true)
+        barSize = attributes.getDimensionPixelSize(R.styleable.PopupBarChart_chart_bar_size, context.dpToPx(16).toInt())
+        secondaryColor = attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_secondary_color, -1)
 
-        val barTextColor = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_text_color, -1)
-        val barTextSize = attributes.getDimensionPixelSize(R.styleable.CustomBarChartStyle_chart_bar_text_size, context.spToPx(10).toInt())
-        val barTextFontFamily = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_text_family, -1)
+        barTextColor = attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_text_color, -1)
+        barTextSize = attributes.getDimensionPixelSize(R.styleable.PopupBarChart_chart_bar_text_size, context.spToPx(10).toInt())
+        barTextFontFamily = attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_text_family, -1)
 
-        val tooltipBg = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_tooltip_bg_color, -1)
-        val tooltipTitleTextColor = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_tooltip_title_text_color, -1)
-        val tooltipTitleTextFontFamily = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_tooltip_title_text_family, -1)
-        val tooltipTitleTextSize = attributes.getDimensionPixelSize(R.styleable.CustomBarChartStyle_chart_bar_tooltip_title_text_size, context.spToPx(10).toInt())
-        val tooltipSubTitleTextColor = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_tooltip_subtitle_text_color, -1)
-        val tooltipSubTitleTextFontFamily = attributes.getResourceId(R.styleable.CustomBarChartStyle_chart_bar_tooltip_subtitle_text_family, -1)
-        val tooltipSubTitleTextSize = attributes.getDimensionPixelSize(R.styleable.CustomBarChartStyle_chart_bar_tooltip_subtitle_text_size, context.spToPx(10).toInt())
+        tooltipBg = attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_tooltip_bg_color, -1)
+        tooltipTitleTextColor = attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_tooltip_title_text_color, -1)
+        tooltipTitleTextFontFamily = attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_tooltip_title_text_family, -1)
+        tooltipTitleTextSize = attributes.getDimensionPixelSize(R.styleable.PopupBarChart_chart_bar_tooltip_title_text_size, context.spToPx(10).toInt())
+        tooltipSubTitleTextColor = attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_tooltip_subtitle_text_color, -1)
+        tooltipSubTitleTextFontFamily = attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_tooltip_subtitle_text_family, -1)
+        tooltipSubTitleTextSize = attributes.getDimensionPixelSize(R.styleable.PopupBarChart_chart_bar_tooltip_subtitle_text_size, context.spToPx(10).toInt())
 
         if (startColor == -1 || endColor == -1) {
             startColor = (startColor * endColor) * -1
@@ -244,7 +272,7 @@ class CustomBarChart @JvmOverloads constructor(
                 typeface = ResourcesCompat.getFont(context, tooltipSubTitleTextFontFamily)
         }
 
-        mProgressBGPaint.apply {
+/*        mProgressBGPaint.apply {
             strokeWidth = barSize.toFloat()
             if (roundCorner) {
                 strokeCap = Paint.Cap.ROUND
@@ -266,7 +294,7 @@ class CustomBarChart @JvmOverloads constructor(
                 strokeCap = Paint.Cap.SQUARE
                 strokeJoin = Paint.Join.BEVEL
             }
-        }
+        }*/
 
         colors = intArrayOf(
             ContextCompat.getColor(context,startColor),
@@ -279,8 +307,39 @@ class CustomBarChart @JvmOverloads constructor(
             mAnimatorUpdateListener?.onAnimationUpdate(animation)
             postInvalidate()
         }
+
+        attributes.recycle()
     }
 
+    private fun setBarRoundCorner(roundCorner: Boolean) {
+        mProgressBGPaint.apply {
+            if (roundCorner) {
+                strokeCap = Paint.Cap.ROUND
+                strokeJoin = Paint.Join.ROUND
+            } else {
+                strokeCap = Paint.Cap.SQUARE
+                strokeJoin = Paint.Join.BEVEL
+            }
+        }
+
+        mProgressPaint.apply {
+            if (roundCorner) {
+                strokeCap = Paint.Cap.ROUND
+                strokeJoin = Paint.Join.ROUND
+            } else {
+                strokeCap = Paint.Cap.SQUARE
+                strokeJoin = Paint.Join.BEVEL
+            }
+        }
+        postInvalidate()
+    }
+
+    private fun setBarSecondaryColor(secondaryColor: Int) {
+        mProgressBGPaint.apply {
+            if (secondaryColor != -1)
+                this.color = ContextCompat.getColor(context, secondaryColor)
+        }
+    }
 
     fun animateProgress() {
         if (mProgressAnimator.isRunning) {

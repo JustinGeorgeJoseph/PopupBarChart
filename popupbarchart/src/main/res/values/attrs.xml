@@ -16,7 +16,7 @@
   -->
 
 <resources>
-    <declare-styleable name="CustomBarChartStyle">
+    <declare-styleable name="PopupBarChart">
         <!--Chart bar attributes-->
         <attr name="chart_bar_start_color" format="reference" />
         <attr name="chart_bar_end_color" format="reference" />

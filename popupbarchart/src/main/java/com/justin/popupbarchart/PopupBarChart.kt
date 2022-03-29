@@ -131,8 +131,10 @@ class PopupBarChart @JvmOverloads constructor(
 
     var barSize = context.dpToPx(16).toInt()
         set(value) {
-            field = value
-
+            field = context.dpToPx(value).toInt()
+            mProgressBGPaint.strokeWidth = field.toFloat()
+            mProgressPaint.strokeWidth = field.toFloat()
+            postInvalidate()
         }
 
     var barTextColor = -1

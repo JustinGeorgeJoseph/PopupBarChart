@@ -3,6 +3,7 @@ package com.justin.popupbarchartsample
 import android.os.Bundle
 import android.util.Log
 import android.widget.CheckBox
+import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.justin.popupbarchart.PopupBarChart
@@ -134,5 +135,20 @@ class MainActivity : AppCompatActivity() {
                 .setBottomSpace(12) // set a bottom space between the last slidebar and buttons.
                 .show()
         }
+
+        findViewById<SeekBar>(R.id.bar_size).setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+                widget.barSize = p0?.progress ?: 16
+            }
+
+        })
     }
 }

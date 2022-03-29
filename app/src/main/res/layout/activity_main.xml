@@ -80,5 +80,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/customBarchart" />
 
+
+    <SeekBar
+        android:id="@+id/bar_size"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:progress="16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>
 </ScrollView>

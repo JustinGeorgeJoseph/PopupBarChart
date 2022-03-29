@@ -53,7 +53,7 @@ class PopupBarChart @JvmOverloads constructor(
 
     /*Tooltip variables*/
     private val topPoint = 10f
-    private val padding = context.dpToPx( 7)
+    private val padding = context.dpToPx(7)
     private val paddingBetweenText = 4f
     private val completedText = "completed"
 
@@ -68,9 +68,9 @@ class PopupBarChart @JvmOverloads constructor(
 
 
     /*Graph Variables*/
-    private val barWidth = context.dpToPx( 16)
-    private val graphLeftAndRightPadding = context.dpToPx( 20)
-    private val graphLeftPadding = context.dpToPx( 25)/2
+    private val barWidth = context.dpToPx(16)
+    private val graphLeftAndRightPadding = context.dpToPx(20)
+    private val graphLeftPadding = context.dpToPx(25) / 2
     private val totalBarCount = 7
 
     private var split = 0
@@ -106,34 +106,16 @@ class PopupBarChart @JvmOverloads constructor(
 
     //Graph attributes
     var endColor = ContextCompat.getColor(context, R.color.bg_bar_graph_green_end)
-    set(value) {
-        field = value
-        mProgressPaint.shader = LinearGradient(0f,
-            0f,
-            0f,
-            widgetHeight.toFloat(),
-            intArrayOf(
-                field,
-                startColor,
-            ),
-            null,
-            Shader.TileMode.MIRROR)
-        postInvalidate()
-    }
+        set(value) {
+            field = value
+            setProgressBarColor(startColor, field)
+        }
+
+
     var startColor = ContextCompat.getColor(context, R.color.bg_bar_graph_green_start)
         set(value) {
             field = value
-            mProgressPaint.shader = LinearGradient(0f,
-                0f,
-                0f,
-                widgetHeight.toFloat(),
-                intArrayOf(
-                    endColor,
-                    field,
-                ),
-                null,
-                Shader.TileMode.MIRROR)
-            postInvalidate()
+            setProgressBarColor(field, endColor)
         }
     var roundCorner = true
         set(value) {
@@ -142,12 +124,16 @@ class PopupBarChart @JvmOverloads constructor(
         }
 
     var secondaryColor = -1
-    set(value) {
-        field = value
-        setBarSecondaryColor(field)
-    }
+        set(value) {
+            field = value
+            setBarSecondaryColor(field)
+        }
 
     var barSize = context.dpToPx(16).toInt()
+        set(value) {
+            field = value
+
+        }
 
     var barTextColor = -1
     var barTextFontFamily = -1
@@ -160,7 +146,6 @@ class PopupBarChart @JvmOverloads constructor(
     var tooltipSubTitleTextFontFamily = -1
     var tooltipTitleTextSize = context.spToPx(10).toInt()
     var tooltipSubTitleTextSize = context.spToPx(10).toInt()
-
 
 
     /*
@@ -204,7 +189,7 @@ class PopupBarChart @JvmOverloads constructor(
         init {
             isDither = true
             style = Style.STROKE
-            strokeWidth = context.dpToPx( 16)
+            strokeWidth = context.dpToPx(16)
             style = Style.STROKE
             strokeCap = Cap.ROUND
             strokeJoin = Join.ROUND
@@ -230,7 +215,7 @@ class PopupBarChart @JvmOverloads constructor(
     private val tooltipBgPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.BLACK
         strokeWidth = 1.0f
-        val radius = context.dpToPx( 4)
+        val radius = context.dpToPx(4)
         val corEffect = CornerPathEffect(radius)
         pathEffect = corEffect
     }
@@ -251,20 +236,38 @@ class PopupBarChart @JvmOverloads constructor(
         endColor = attributes.getColor(R.styleable.PopupBarChart_chart_bar_start_color, -1)
         startColor = attributes.getColor(R.styleable.PopupBarChart_chart_bar_end_color, -1)
         roundCorner = attributes.getBoolean(R.styleable.PopupBarChart_chart_bar_round_corner, true)
-        barSize = attributes.getDimensionPixelSize(R.styleable.PopupBarChart_chart_bar_size, context.dpToPx(16).toInt())
-        secondaryColor = attributes.getColor(R.styleable.PopupBarChart_chart_bar_secondary_color, -1)
+        barSize = attributes.getDimensionPixelSize(R.styleable.PopupBarChart_chart_bar_size,
+            context.dpToPx(16).toInt())
+        secondaryColor =
+            attributes.getColor(R.styleable.PopupBarChart_chart_bar_secondary_color, -1)
 
         barTextColor = attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_text_color, -1)
-        barTextSize = attributes.getDimensionPixelSize(R.styleable.PopupBarChart_chart_bar_text_size, context.spToPx(10).toInt())
-        barTextFontFamily = attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_text_family, -1)
+        barTextSize =
+            attributes.getDimensionPixelSize(R.styleable.PopupBarChart_chart_bar_text_size,
+                context.spToPx(10).toInt())
+        barTextFontFamily =
+            attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_text_family, -1)
 
-        tooltipBg = attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_tooltip_bg_color, -1)
-        tooltipTitleTextColor = attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_tooltip_title_text_color, -1)
-        tooltipTitleTextFontFamily = attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_tooltip_title_text_family, -1)
-        tooltipTitleTextSize = attributes.getDimensionPixelSize(R.styleable.PopupBarChart_chart_bar_tooltip_title_text_size, context.spToPx(10).toInt())
-        tooltipSubTitleTextColor = attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_tooltip_subtitle_text_color, -1)
-        tooltipSubTitleTextFontFamily = attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_tooltip_subtitle_text_family, -1)
-        tooltipSubTitleTextSize = attributes.getDimensionPixelSize(R.styleable.PopupBarChart_chart_bar_tooltip_subtitle_text_size, context.spToPx(10).toInt())
+        tooltipBg =
+            attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_tooltip_bg_color, -1)
+        tooltipTitleTextColor =
+            attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_tooltip_title_text_color,
+                -1)
+        tooltipTitleTextFontFamily =
+            attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_tooltip_title_text_family,
+                -1)
+        tooltipTitleTextSize =
+            attributes.getDimensionPixelSize(R.styleable.PopupBarChart_chart_bar_tooltip_title_text_size,
+                context.spToPx(10).toInt())
+        tooltipSubTitleTextColor =
+            attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_tooltip_subtitle_text_color,
+                -1)
+        tooltipSubTitleTextFontFamily =
+            attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_tooltip_subtitle_text_family,
+                -1)
+        tooltipSubTitleTextSize =
+            attributes.getDimensionPixelSize(R.styleable.PopupBarChart_chart_bar_tooltip_subtitle_text_size,
+                context.spToPx(10).toInt())
 
         if (startColor == -1 || endColor == -1) {
             startColor = (startColor * endColor) * -1
@@ -332,7 +335,7 @@ class PopupBarChart @JvmOverloads constructor(
             endColor,
         )
 
-        mProgressAnimator.setFloatValues(minFraction,maxFraction)
+        mProgressAnimator.setFloatValues(minFraction, maxFraction)
         mProgressAnimator.addUpdateListener { animation ->
             mAnimatedFraction = animation.animatedValue as Float
             mAnimatorUpdateListener?.onAnimationUpdate(animation)
@@ -340,6 +343,20 @@ class PopupBarChart @JvmOverloads constructor(
         }
 
         attributes.recycle()
+    }
+
+    private fun setProgressBarColor(startColor: Int, endColor: Int) {
+        mProgressPaint.shader = LinearGradient(0f,
+            0f,
+            0f,
+            widgetHeight.toFloat(),
+            intArrayOf(
+                endColor,
+                startColor,
+            ),
+            null,
+            Shader.TileMode.MIRROR)
+        postInvalidate()
     }
 
     private fun setBarRoundCorner(roundCorner: Boolean) {
@@ -392,7 +409,7 @@ class PopupBarChart @JvmOverloads constructor(
         widgetWidth = MeasureSpec.getSize(widthMeasureSpec)
         widgetHeight = MeasureSpec.getSize(heightMeasureSpec)
         calculateDefaultTooltipSize(percentageText = percentageText)
-        val requiredWidth = widgetWidth -  graphLeftAndRightPadding
+        val requiredWidth = widgetWidth - graphLeftAndRightPadding
         calculateGraphValues(requiredWidth.toInt(), widgetHeight)
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
     }
@@ -403,10 +420,10 @@ class PopupBarChart @JvmOverloads constructor(
                 MotionEvent.ACTION_DOWN -> {
                     for (i in 0 until listGraphValues.size) {
                         val graph = graphModelList[i]
-                        val graphRectF = RectF(graph.graphBarRect.left - context.dpToPx( 10),
-                            graph.graphBarRect.top - context.dpToPx( 10),
-                            graph.graphBarRect.right + context.dpToPx( 10),
-                            graph.graphBarRect.bottom + context.dpToPx( 10))
+                        val graphRectF = RectF(graph.graphBarRect.left - context.dpToPx(10),
+                            graph.graphBarRect.top - context.dpToPx(10),
+                            graph.graphBarRect.right + context.dpToPx(10),
+                            graph.graphBarRect.bottom + context.dpToPx(10))
                         if (graphRectF.contains(it.x, it.y)) {
                             for (j in 0 until listGraphValues.size) {
                                 val gv = listGraphValues[j]
@@ -434,7 +451,7 @@ class PopupBarChart @JvmOverloads constructor(
 
     private fun calculateGraphValues(width: Int, height: Int) {
         split = width / totalBarCount
-        startingPoint = tooltipAnchorBottomPoint + context.dpToPx( 10)
+        startingPoint = tooltipAnchorBottomPoint + context.dpToPx(10)
         barHeight = height.toFloat()/* - startingPoint*/
         val todayText = "TODAY"
         val todayRect = Rect()
@@ -450,9 +467,9 @@ class PopupBarChart @JvmOverloads constructor(
         for (i in 0..6) {
             val startX = (split * i + graphLeftPadding)
             val barX = (((startX + split) - startX) - barWidth) / 2
-            val tempBarHeight = barHeight - todayRect.height() - context.dpToPx( 30)
+            val tempBarHeight = barHeight - todayRect.height() - context.dpToPx(30)
 
-            val myDelta = context.dpToPx( 7)
+            val myDelta = context.dpToPx(7)
             val splitRect = SplitRect(startX)
             val graphBarRect = GraphBarRect((startX + barX + myDelta))
             graphBarRect.apply {
@@ -495,7 +512,7 @@ class PopupBarChart @JvmOverloads constructor(
         val rightPoint = xPoint - (tooltipHeadRectWidth / 2)
         var topPoint = yPoint - tooltipAnchorBottomPoint
 
-        topPoint -= context.dpToPx( 7)
+        topPoint -= context.dpToPx(7)
 
         tooltipLeftPoint = rightPoint
         tooltipTopPoint = topPoint
@@ -534,11 +551,12 @@ class PopupBarChart @JvmOverloads constructor(
             val width = ((tooltipHeadRectWidth - (percentageBounds.width())) / 2) + tooltipLeftPoint
             canvas.drawText(percentageText,
                 width,
-                tooltipTopPoint + padding + context.dpToPx( 8),
+                tooltipTopPoint + padding + context.dpToPx(8),
                 percentagePaint)
             canvas.drawText(completedText,
                 tooltipLeftPoint + padding,
-                tooltipTopPoint + padding + paddingBetweenText + percentageBounds.height() + context.dpToPx( 8),
+                tooltipTopPoint + padding + paddingBetweenText + percentageBounds.height() + context.dpToPx(
+                    8),
                 completedPaint)
 
         }
@@ -562,9 +580,9 @@ class PopupBarChart @JvmOverloads constructor(
                 val graphBarRect = graphModel.graphBarRect
                 val splitRect = graphModel.splitRect
 
-                if (graphValue.progress >0 ) {
+                if (graphValue.progress > 0) {
                     val height = graphBarRect.bottom - graphBarRect.top
-                    val tempProgressValue = graphValue.progress*mAnimatedFraction
+                    val tempProgressValue = graphValue.progress * mAnimatedFraction
                     val tempProgress = (((100 - tempProgressValue) / 100) * height)
                     drawLine(graphBarRect.left,
                         graphBarRect.top + tempProgress,
@@ -583,7 +601,7 @@ class PopupBarChart @JvmOverloads constructor(
                     val deltaValue = ((deltaB - deltaA) - textViewWidth) / 2
                     drawText(todayText,
                         (deltaA + deltaValue),
-                        (graphBarRect.bottom + context.dpToPx( 25)),
+                        (graphBarRect.bottom + context.dpToPx(25)),
                         mTodayTextPaint)
                 } else {
                     val dayText = "DAY ${graphValue.day}"
@@ -595,7 +613,7 @@ class PopupBarChart @JvmOverloads constructor(
                     val deltaValue = ((deltaB - deltaA) - textViewWidth) / 2
                     drawText(dayText,
                         (deltaA + deltaValue),
-                        (graphBarRect.bottom + context.dpToPx( 25)),
+                        (graphBarRect.bottom + context.dpToPx(25)),
                         mDayTextPaint)
                 }
 

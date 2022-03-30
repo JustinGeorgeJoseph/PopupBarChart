@@ -150,5 +150,54 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+
+        findViewById<AppCompatButton>(R.id.btn_rubik_italic).setOnClickListener {
+            widget.barTextFontFamily= R.font.rubik_italic
+        }
+
+        findViewById<AppCompatButton>(R.id.btn_rubik_medium).setOnClickListener {
+            widget.barTextFontFamily= R.font.rubik_medium
+        }
+
+        findViewById<AppCompatButton>(R.id.btn_hurricane_regular).setOnClickListener {
+            widget.barTextFontFamily= R.font.hurricane_regular
+        }
+
+        findViewById<AppCompatButton>(R.id.colorPickerDayText).setOnClickListener {
+            ColorPickerDialog.Builder(this)
+                .setTitle("Choose Day Text color")
+                .setPreferenceName("dayTextColor")
+                .setPositiveButton("confirm",
+                    ColorEnvelopeListener { envelope, fromUser ->
+                        Log.d("TAG_JUSTIN","--> ${envelope.color} || ${envelope.argb} || ${envelope.hexCode}")
+                        widget.barTextColor = envelope.color
+                    })
+                .setNegativeButton("Cancel") {
+                        dialogInterface, i -> dialogInterface.dismiss()
+                }
+                .attachAlphaSlideBar(true) // the default value is true.
+                .attachBrightnessSlideBar(true) // the default value is true.
+                .setBottomSpace(12) // set a bottom space between the last slidebar and buttons.
+                .show()
+        }
+
+        findViewById<SeekBar>(R.id.day_text_size).setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+                widget.barTextSize = p0?.progress ?: 16
+            }
+
+        })
+
+
+
+
     }
 }

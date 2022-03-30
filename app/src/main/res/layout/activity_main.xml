@@ -88,5 +88,57 @@
         android:progress="16"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:weightSum="3"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_rubik_italic"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="rubik italic"/>
+
+        <Button
+            android:id="@+id/btn_rubik_medium"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_height="wrap_content"
+            android:text="rubik medium"/>
+
+        <Button
+            android:id="@+id/btn_hurricane_regular"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Hurricane regular"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/colorPickerDayText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose Day text color"
+        android:layout_margin="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customBarchart" />
+
+    <SeekBar
+        android:id="@+id/day_text_size"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:progress="16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>
 </ScrollView>

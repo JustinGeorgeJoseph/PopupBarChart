@@ -111,7 +111,6 @@ class PopupBarChart @JvmOverloads constructor(
             setProgressBarColor(startColor, field)
         }
 
-
     var startColor = ContextCompat.getColor(context, R.color.bg_bar_graph_green_start)
         set(value) {
             field = value
@@ -132,14 +131,29 @@ class PopupBarChart @JvmOverloads constructor(
     var barSize = context.dpToPx(16).toInt()
         set(value) {
             field = context.dpToPx(value).toInt()
-            mProgressBGPaint.strokeWidth = field.toFloat()
-            mProgressPaint.strokeWidth = field.toFloat()
-            postInvalidate()
+            setCustomBarSize(field)
         }
 
     var barTextColor = -1
+        set(value) {
+            field = value
+            setProgressBarTextColor(field)
+        }
+
+
     var barTextFontFamily = -1
+        set(value) {
+            field = value
+            setProgressBarFontFamily(field)
+        }
+
     var barTextSize = context.spToPx(10).toInt()
+        set(value) {
+            field = value
+            setProgressBarTextSize(field)
+        }
+
+
 
     var tooltipBg = -1
     var tooltipTitleTextColor = -1
@@ -243,7 +257,7 @@ class PopupBarChart @JvmOverloads constructor(
         secondaryColor =
             attributes.getColor(R.styleable.PopupBarChart_chart_bar_secondary_color, -1)
 
-        barTextColor = attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_text_color, -1)
+        barTextColor = attributes.getColor(R.styleable.PopupBarChart_chart_bar_text_color, -1)
         barTextSize =
             attributes.getDimensionPixelSize(R.styleable.PopupBarChart_chart_bar_text_size,
                 context.spToPx(10).toInt())
@@ -278,7 +292,7 @@ class PopupBarChart @JvmOverloads constructor(
 
         mDayTextPaint.apply {
             if (barTextColor != -1)
-                color = ContextCompat.getColor(context, barTextColor)
+                color = barTextColor
             if (barTextSize != -1)
                 textSize = barTextSize.toFloat()
             if (barTextFontFamily != -1)
@@ -307,30 +321,6 @@ class PopupBarChart @JvmOverloads constructor(
             if (tooltipSubTitleTextFontFamily != -1)
                 typeface = ResourcesCompat.getFont(context, tooltipSubTitleTextFontFamily)
         }
-
-/*        mProgressBGPaint.apply {
-            strokeWidth = barSize.toFloat()
-            if (roundCorner) {
-                strokeCap = Paint.Cap.ROUND
-                strokeJoin = Paint.Join.ROUND
-            } else {
-                strokeCap = Paint.Cap.SQUARE
-                strokeJoin = Paint.Join.BEVEL
-            }
-            if (secondaryColor != -1)
-                this.color = ContextCompat.getColor(context, secondaryColor)
-        }
-
-        mProgressPaint.apply {
-            strokeWidth = barSize.toFloat()
-            if (roundCorner) {
-                strokeCap = Paint.Cap.ROUND
-                strokeJoin = Paint.Join.ROUND
-            } else {
-                strokeCap = Paint.Cap.SQUARE
-                strokeJoin = Paint.Join.BEVEL
-            }
-        }*/
 
         colors = intArrayOf(
             startColor,
@@ -389,6 +379,30 @@ class PopupBarChart @JvmOverloads constructor(
             if (secondaryColor != -1)
                 this.color = secondaryColor
         }
+        postInvalidate()
+    }
+
+    private fun setCustomBarSize(field: Int) {
+        mProgressBGPaint.strokeWidth = field.toFloat()
+        mProgressPaint.strokeWidth = field.toFloat()
+        postInvalidate()
+    }
+
+    private fun setProgressBarTextColor(field: Int) {
+        if (field != -1)
+            mDayTextPaint.color = field
+        postInvalidate()
+    }
+
+    private fun setProgressBarFontFamily(field: Int) {
+        if (field != -1)
+            mDayTextPaint.typeface = ResourcesCompat.getFont(context, field)
+        postInvalidate()
+    }
+
+    private fun setProgressBarTextSize(field: Int) {
+        if (field != -1)
+            mDayTextPaint.textSize = field.toFloat()
         postInvalidate()
     }
 

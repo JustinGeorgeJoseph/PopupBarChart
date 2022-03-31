@@ -1,144 +1,307 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<LinearLayout
-    android:orientation="vertical"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical">
 
     <com.justin.popupbarchart.PopupBarChart
         android:id="@+id/customBarchart"
         android:layout_width="match_parent"
         android:layout_height="300dp"
 
-        app:chart_bar_start_color="@android:color/holo_red_dark"
         app:chart_bar_end_color="@android:color/holo_green_dark"
         app:chart_bar_round_corner="true"
-        app:chart_bar_size="8dp"
         app:chart_bar_secondary_color="@android:color/holo_blue_bright"
+        app:chart_bar_size="8dp"
+        app:chart_bar_start_color="@android:color/holo_red_dark"
 
-        app:chart_bar_text_size="10sp"
-        app:chart_bar_text_family="@font/rubik_italic"
         app:chart_bar_text_color="@android:color/holo_blue_bright"
+        app:chart_bar_text_family="@font/rubik_italic"
+        app:chart_bar_text_size="10sp"
 
         app:chart_bar_tooltip_bg_color="@android:color/holo_red_dark"
 
-        app:chart_bar_tooltip_title_text_size="10sp"
-        app:chart_bar_tooltip_title_text_family="@font/rubik_italic"
-        app:chart_bar_tooltip_title_text_color="@android:color/holo_blue_bright"
-
-        app:chart_bar_tooltip_subtitle_text_size="10sp"
-        app:chart_bar_tooltip_subtitle_text_family="@font/rubik_medium"
         app:chart_bar_tooltip_subtitle_text_color="@android:color/holo_green_dark"
+        app:chart_bar_tooltip_subtitle_text_family="@font/rubik_medium"
+        app:chart_bar_tooltip_subtitle_text_size="10sp"
+
+        app:chart_bar_tooltip_title_text_color="@android:color/holo_blue_bright"
+        app:chart_bar_tooltip_title_text_family="@font/rubik_italic"
+        app:chart_bar_tooltip_title_text_size="10sp"
 
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <CheckBox
-        android:id="@+id/cb_round_corner"
-        android:text="Round bar"
-        android:checked="true"
-        android:padding="10dp"
-        android:layout_margin="10dp"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/colorPicker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Choose secondary color"
-        android:layout_margin="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/customBarchart" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/colorPickerStartColor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Choose startColor"
-        android:layout_margin="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/customBarchart" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/colorPickerEndColor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Choose end Color"
-        android:layout_margin="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/customBarchart" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".MainActivity">
 
 
-    <SeekBar
-        android:id="@+id/bar_size"
-        android:padding="10dp"
-        android:layout_margin="10dp"
-        android:progress="16"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <CheckBox
+                android:id="@+id/cb_round_corner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:checked="true"
+                android:padding="10dp"
+                android:text="Round bar" />
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:weightSum="3"
-        android:padding="10dp"
-        android:layout_margin="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/colorPicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Choose secondary color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/customBarchart" />
 
-        <Button
-            android:id="@+id/btn_rubik_italic"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="rubik italic"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/colorPickerStartColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Choose startColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/customBarchart" />
 
-        <Button
-            android:id="@+id/btn_rubik_medium"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_height="wrap_content"
-            android:text="rubik medium"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/colorPickerEndColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Choose end Color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/customBarchart" />
 
-        <Button
-            android:id="@+id/btn_hurricane_regular"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Hurricane regular"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="ProgressBar width"/>
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            <SeekBar
+                android:id="@+id/bar_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:progress="16" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/colorPickerDayText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Choose Day text color"
-        android:layout_margin="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/customBarchart" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Day text family"/>
 
-    <SeekBar
-        android:id="@+id/day_text_size"
-        android:padding="10dp"
-        android:layout_margin="10dp"
-        android:progress="16"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:padding="10dp"
+                android:weightSum="3">
 
+                <Button
+                    android:id="@+id/btn_rubik_italic"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="rubik italic" />
+
+                <Button
+                    android:id="@+id/btn_rubik_medium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:text="rubik medium" />
+
+                <Button
+                    android:id="@+id/btn_hurricane_regular"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Hurricane regular" />
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/colorPickerDayText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Choose Day text color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/customBarchart" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="25dp"
+                android:text="Day text font size"/>
+
+            <SeekBar
+                android:id="@+id/day_text_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:progress="16" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/colorPickerTooltipBg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Choose Tooltip bg color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/customBarchart" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/colorPickerTooltipTitleTextColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Choose Tooltip Title TextColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/customBarchart" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/colorPickerTooltipSubTitleTextColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Choose Tooltip subtitle text color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/customBarchart" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Tooltip title text family"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:weightSum="3">
+
+                <Button
+                    android:id="@+id/btn_rubik_italic_tooltip_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="rubik italic" />
+
+                <Button
+                    android:id="@+id/btn_rubik_medium_tooltip_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:text="rubik medium" />
+
+                <Button
+                    android:id="@+id/btn_hurricane_regular_tooltip_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Hurricane regular" />
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Tooltip sub title text family"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:weightSum="3">
+
+                <Button
+                    android:id="@+id/btn_rubik_italic_tooltip_sub_family"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="rubik italic" />
+
+                <Button
+                    android:id="@+id/btn_rubik_medium_tooltip_sub_family"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:text="rubik medium" />
+
+                <Button
+                    android:id="@+id/btn_hurricane_regular_tooltip_sub_family"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Hurricane regular" />
+
+            </LinearLayout>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="25dp"
+                android:text="Tooltip title size"/>
+
+            <SeekBar
+                android:id="@+id/tooltip_title_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:progress="16" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="25dp"
+                android:text="Tooltip subtitle size"/>
+
+            <SeekBar
+                android:id="@+id/tooltip_sub_title_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:progress="16" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
-</ScrollView>

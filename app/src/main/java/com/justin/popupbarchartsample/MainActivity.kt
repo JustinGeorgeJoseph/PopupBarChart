@@ -197,7 +197,116 @@ class MainActivity : AppCompatActivity() {
         })
 
 
+        findViewById<AppCompatButton>(R.id.colorPickerTooltipBg).setOnClickListener {
+            ColorPickerDialog.Builder(this)
+                .setTitle("Choose Tooltip bg color")
+                .setPreferenceName("dayTooltipBgColor")
+                .setPositiveButton("confirm",
+                    ColorEnvelopeListener { envelope, fromUser ->
+                        Log.d("TAG_JUSTIN","--> ${envelope.color} || ${envelope.argb} || ${envelope.hexCode}")
+                        widget.tooltipBg = envelope.color
+                    })
+                .setNegativeButton("Cancel") {
+                        dialogInterface, i -> dialogInterface.dismiss()
+                }
+                .attachAlphaSlideBar(true) // the default value is true.
+                .attachBrightnessSlideBar(true) // the default value is true.
+                .setBottomSpace(12) // set a bottom space between the last slidebar and buttons.
+                .show()
+        }
 
+
+        findViewById<AppCompatButton>(R.id.colorPickerTooltipTitleTextColor).setOnClickListener {
+            ColorPickerDialog.Builder(this)
+                .setTitle("Choose Tooltip title color")
+                .setPreferenceName("dayTooltipTitleColor")
+                .setPositiveButton("confirm",
+                    ColorEnvelopeListener { envelope, fromUser ->
+                        Log.d("TAG_JUSTIN","--> ${envelope.color} || ${envelope.argb} || ${envelope.hexCode}")
+                        widget.tooltipTitleTextColor = envelope.color
+                    })
+                .setNegativeButton("Cancel") {
+                        dialogInterface, i -> dialogInterface.dismiss()
+                }
+                .attachAlphaSlideBar(true) // the default value is true.
+                .attachBrightnessSlideBar(true) // the default value is true.
+                .setBottomSpace(12) // set a bottom space between the last slidebar and buttons.
+                .show()
+        }
+
+        findViewById<AppCompatButton>(R.id.colorPickerTooltipSubTitleTextColor).setOnClickListener {
+            ColorPickerDialog.Builder(this)
+                .setTitle("Choose Tooltip sub title color")
+                .setPreferenceName("dayTooltipSubTitleColor")
+                .setPositiveButton("confirm",
+                    ColorEnvelopeListener { envelope, fromUser ->
+                        Log.d("TAG_JUSTIN","--> ${envelope.color} || ${envelope.argb} || ${envelope.hexCode}")
+                        widget.tooltipSubTitleTextColor = envelope.color
+                    })
+                .setNegativeButton("Cancel") {
+                        dialogInterface, i -> dialogInterface.dismiss()
+                }
+                .attachAlphaSlideBar(true) // the default value is true.
+                .attachBrightnessSlideBar(true) // the default value is true.
+                .setBottomSpace(12) // set a bottom space between the last slidebar and buttons.
+                .show()
+        }
+
+
+        findViewById<AppCompatButton>(R.id.btn_rubik_italic_tooltip_title).setOnClickListener {
+            widget.tooltipTitleTextFontFamily= R.font.rubik_italic
+        }
+
+        findViewById<AppCompatButton>(R.id.btn_rubik_medium_tooltip_title).setOnClickListener {
+            widget.tooltipTitleTextFontFamily= R.font.rubik_medium
+        }
+
+        findViewById<AppCompatButton>(R.id.btn_hurricane_regular_tooltip_title).setOnClickListener {
+            widget.tooltipTitleTextFontFamily= R.font.hurricane_regular
+        }
+
+
+        findViewById<AppCompatButton>(R.id.btn_rubik_italic_tooltip_sub_family).setOnClickListener {
+            widget.tooltipSubTitleTextFontFamily= R.font.rubik_italic
+        }
+
+        findViewById<AppCompatButton>(R.id.btn_rubik_medium_tooltip_sub_family).setOnClickListener {
+            widget.tooltipSubTitleTextFontFamily= R.font.rubik_medium
+        }
+
+        findViewById<AppCompatButton>(R.id.btn_hurricane_regular_tooltip_sub_family).setOnClickListener {
+            widget.tooltipSubTitleTextFontFamily= R.font.hurricane_regular
+        }
+
+        findViewById<SeekBar>(R.id.tooltip_title_size).setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+                widget.tooltipTitleTextSize = p0?.progress ?: 16
+            }
+
+        })
+
+        findViewById<SeekBar>(R.id.tooltip_sub_title_size).setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+                widget.tooltipSubTitleTextSize = p0?.progress ?: 16
+            }
+
+        })
 
     }
 }

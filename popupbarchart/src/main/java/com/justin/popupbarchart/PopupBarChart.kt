@@ -24,6 +24,7 @@ import android.content.Context
 import android.graphics.*
 import android.text.TextPaint
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -154,14 +155,62 @@ class PopupBarChart @JvmOverloads constructor(
         }
 
 
-
     var tooltipBg = -1
+        set(value) {
+            field = value
+            if (field != -1) {
+                tooltipBgPaint.color = field
+                postInvalidate()
+            }
+        }
     var tooltipTitleTextColor = -1
+        set(value) {
+            field = value
+            if (field != -1) {
+                percentagePaint.color = field
+                postInvalidate()
+            }
+        }
     var tooltipSubTitleTextColor = -1
+        set(value) {
+            field = value
+            if (field != -1) {
+                completedPaint.color = field
+                postInvalidate()
+            }
+        }
     var tooltipTitleTextFontFamily = -1
+        set(value) {
+            field = value
+            if (field != -1) {
+                percentagePaint.typeface = ResourcesCompat.getFont(context, field)
+                postInvalidate()
+            }
+        }
     var tooltipSubTitleTextFontFamily = -1
+        set(value) {
+            field = value
+            if (field != -1) {
+                completedPaint.typeface = ResourcesCompat.getFont(context, field)
+                postInvalidate()
+            }
+        }
     var tooltipTitleTextSize = context.spToPx(10).toInt()
+        set(value) {
+            field = value
+            if (field != -1) {
+                percentagePaint.textSize = field.toFloat()
+                postInvalidate()
+            }
+        }
     var tooltipSubTitleTextSize = context.spToPx(10).toInt()
+        set(value) {
+            field = value
+            if (field != -1) {
+                completedPaint.textSize = field.toFloat()
+                postInvalidate()
+            }
+        }
 
 
     /*
@@ -265,9 +314,9 @@ class PopupBarChart @JvmOverloads constructor(
             attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_text_family, -1)
 
         tooltipBg =
-            attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_tooltip_bg_color, -1)
+            attributes.getColor(R.styleable.PopupBarChart_chart_bar_tooltip_bg_color, -1)
         tooltipTitleTextColor =
-            attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_tooltip_title_text_color,
+            attributes.getColor(R.styleable.PopupBarChart_chart_bar_tooltip_title_text_color,
                 -1)
         tooltipTitleTextFontFamily =
             attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_tooltip_title_text_family,
@@ -276,7 +325,7 @@ class PopupBarChart @JvmOverloads constructor(
             attributes.getDimensionPixelSize(R.styleable.PopupBarChart_chart_bar_tooltip_title_text_size,
                 context.spToPx(10).toInt())
         tooltipSubTitleTextColor =
-            attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_tooltip_subtitle_text_color,
+            attributes.getColor(R.styleable.PopupBarChart_chart_bar_tooltip_subtitle_text_color,
                 -1)
         tooltipSubTitleTextFontFamily =
             attributes.getResourceId(R.styleable.PopupBarChart_chart_bar_tooltip_subtitle_text_family,
@@ -301,12 +350,12 @@ class PopupBarChart @JvmOverloads constructor(
 
         tooltipBgPaint.apply {
             if (tooltipBg != -1)
-                color = ContextCompat.getColor(context, tooltipBg)
+                color = tooltipBg
         }
 
         completedPaint.apply {
-            if (tooltipTitleTextColor != -1)
-                color = ContextCompat.getColor(context, tooltipTitleTextColor)
+            if (tooltipSubTitleTextColor != -1)
+                color = tooltipSubTitleTextColor
             if (tooltipTitleTextSize != -1)
                 textSize = tooltipTitleTextSize.toFloat()
             if (tooltipTitleTextFontFamily != -1)
@@ -314,8 +363,8 @@ class PopupBarChart @JvmOverloads constructor(
         }
 
         percentagePaint.apply {
-            if (tooltipSubTitleTextColor != -1)
-                color = ContextCompat.getColor(context, tooltipSubTitleTextColor)
+            if (tooltipTitleTextColor != -1)
+                color = tooltipTitleTextColor
             if (tooltipSubTitleTextSize != -1)
                 textSize = tooltipSubTitleTextSize.toFloat()
             if (tooltipSubTitleTextFontFamily != -1)

@@ -1,4 +1,7 @@
-# PopupBarChart
+<h1 align="center">PopupBarChart</h1></br>
+<p align="center">
+PopupBarChart:bar_chart: can show a tooltip on top of each bar with a text🤩
+</p>
 
 # License
 ```xml

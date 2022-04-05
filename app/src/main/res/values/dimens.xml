@@ -16,20 +16,5 @@
   -->
 
 <resources>
-
-    //Bar's background color
-    <color name="bg_bar_graph_green_start">#39D1B4</color>
-    <color name="bg_bar_graph_green_end">#A639D1B4</color>
-
-    <color name="grey_secondary">#0FFFFFFF</color>
-    <color name="grey_a7">#a7aab1</color>
-    <color name="grey_b2b2">#b2b2b2</color>
-
-    <color name="black_2121">#212121</color>
-
-    <color name="white">#ffffff</color>
-    <color name="white_f0">#f0f0f0</color>
-
-    <color name="green_start">#05c95b</color>
-    <color name="green_end">#05c95b</color>
+    <dimen name="bar_size">8dp</dimen>
 </resources>

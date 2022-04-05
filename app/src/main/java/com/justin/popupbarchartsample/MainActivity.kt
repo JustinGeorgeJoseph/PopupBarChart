@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
                         showToolTip = false
                     ),
                     GraphValue(
-                        day = 20,
+                        day = 2,
                         id = 2,
                         progress = 70,
                         isToday = false,

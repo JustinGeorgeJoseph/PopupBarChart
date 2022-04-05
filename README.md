@@ -3,6 +3,13 @@
 PopupBarChart :bar_chart: can show a tooltip on top of each bar with a text🤩
 </p>
 
+  <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
+  <a href="https://android-arsenal.com/api?level=21"><img alt="API" src="https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat"/></a>
+  
+  <p align="center">
+<img src="/imgs/popup_bar_chart.png" />
+</p>
+
 # License
 ```xml
 Copyright 2022 JustinGeorgeJoseph (Justin George)

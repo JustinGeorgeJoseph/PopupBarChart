@@ -9,7 +9,7 @@ PopupBarChart :bar_chart: can show a tooltip on top of each bar with a text🤩
 </p> <br>
 
 <p align="center">
-<img src="/demo/popup_bar_chart.jpg" />
+<img src="/demo/popup_bar_chart.jpg" width="300" height="1200"/>
 </p>
 
 # License

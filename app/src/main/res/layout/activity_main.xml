@@ -4,32 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="30dp"
     android:orientation="vertical">
 
     <com.justin.popupbarchart.PopupBarChart
         android:id="@+id/customBarchart"
         android:layout_width="match_parent"
+        android:background="@color/chart_bg"
         android:layout_height="300dp"
 
-        app:chart_bar_end_color="@android:color/holo_green_dark"
+        app:chart_bar_end_color="@color/green_end"
         app:chart_bar_round_corner="true"
-        app:chart_bar_secondary_color="@android:color/holo_blue_bright"
-        app:chart_bar_size="8dp"
-        app:chart_bar_start_color="@android:color/holo_red_dark"
+        app:chart_bar_secondary_color="@color/grey_secondary"
+        app:chart_bar_size="@dimen/bar_size"
+        app:chart_bar_start_color="@color/green_start"
 
-        app:chart_bar_text_color="@android:color/holo_blue_bright"
-        app:chart_bar_text_family="@font/rubik_italic"
-        app:chart_bar_text_size="10sp"
+        app:chart_bar_text_color="@color/white"
+        app:chart_bar_text_family="@font/roboto_medium"
+        app:chart_bar_text_size="14sp"
 
-        app:chart_bar_tooltip_bg_color="@android:color/holo_red_dark"
+        app:chart_bar_tooltip_bg_color="@android:color/black"
 
-        app:chart_bar_tooltip_subtitle_text_color="@android:color/holo_green_dark"
+        app:chart_bar_tooltip_subtitle_text_color="@color/white"
         app:chart_bar_tooltip_subtitle_text_family="@font/rubik_medium"
         app:chart_bar_tooltip_subtitle_text_size="10sp"
 
-        app:chart_bar_tooltip_title_text_color="@android:color/holo_blue_bright"
-        app:chart_bar_tooltip_title_text_family="@font/rubik_italic"
-        app:chart_bar_tooltip_title_text_size="10sp"
+        app:chart_bar_tooltip_title_text_color="@color/white"
+        app:chart_bar_tooltip_title_text_family="@font/rubik_medium"
+        app:chart_bar_tooltip_title_text_size="12sp"
 
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -52,6 +54,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/rubik_medium"
                 android:checked="true"
                 android:padding="10dp"
                 android:text="Round bar" />
@@ -61,6 +65,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:textColor="@color/white"
+                android:background="@color/chart_bg"
+                android:fontFamily="@font/roboto_medium"
                 android:text="Choose secondary color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -71,6 +78,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:textColor="@color/white"
+                android:background="@color/chart_bg"
+                android:fontFamily="@font/roboto_medium"
                 android:text="Choose startColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -81,6 +91,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:textColor="@color/white"
+                android:background="@color/chart_bg"
+                android:fontFamily="@font/roboto_medium"
                 android:text="Choose end Color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -89,6 +102,10 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                android:fontFamily="@font/roboto_medium"
                 android:paddingLeft="20dp"
                 android:text="ProgressBar width"/>
 
@@ -96,12 +113,18 @@
                 android:id="@+id/bar_size"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:fontFamily="@font/roboto_medium"
                 android:padding="10dp"
                 android:progress="16" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                android:fontFamily="@font/roboto_medium"
                 android:paddingLeft="20dp"
                 android:text="Day text family"/>
 
@@ -114,26 +137,35 @@
                 android:padding="10dp"
                 android:weightSum="3">
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_rubik_italic"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/white"
+                    android:background="@color/chart_bg"
+                    android:fontFamily="@font/roboto_medium"
                     android:layout_weight="1"
                     android:text="rubik italic" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_rubik_medium"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:background="@color/chart_bg"
+                    android:fontFamily="@font/roboto_medium"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_weight="1"
                     android:text="rubik medium" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_hurricane_regular"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/white"
+                    android:background="@color/chart_bg"
+                    android:fontFamily="@font/roboto_medium"
                     android:layout_weight="1"
                     android:text="Hurricane regular" />
 
@@ -144,6 +176,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:textColor="@color/white"
+                android:background="@color/chart_bg"
+                android:fontFamily="@font/roboto_medium"
                 android:text="Choose Day text color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -152,6 +187,9 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/roboto_medium"
                 android:paddingLeft="25dp"
                 android:text="Day text font size"/>
 
@@ -169,6 +207,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:textColor="@color/white"
+                android:background="@color/chart_bg"
+                android:fontFamily="@font/roboto_medium"
                 android:text="Choose Tooltip bg color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -179,6 +220,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:textColor="@color/white"
+                android:background="@color/chart_bg"
+                android:fontFamily="@font/roboto_medium"
                 android:text="Choose Tooltip Title TextColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -189,6 +233,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:textColor="@color/white"
+                android:background="@color/chart_bg"
+                android:fontFamily="@font/roboto_medium"
                 android:text="Choose Tooltip subtitle text color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -197,6 +244,10 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                android:fontFamily="@font/roboto_medium"
                 android:paddingLeft="20dp"
                 android:text="Tooltip title text family"/>
 
@@ -209,26 +260,35 @@
                 android:padding="10dp"
                 android:weightSum="3">
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_rubik_italic_tooltip_title"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:background="@color/chart_bg"
+                    android:fontFamily="@font/roboto_medium"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="rubik italic" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_rubik_medium_tooltip_title"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="10dp"
+                    android:textColor="@color/white"
+                    android:background="@color/chart_bg"
+                    android:fontFamily="@font/roboto_medium"
                     android:layout_marginEnd="10dp"
                     android:layout_weight="1"
                     android:text="rubik medium" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_hurricane_regular_tooltip_title"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/white"
+                    android:background="@color/chart_bg"
+                    android:fontFamily="@font/roboto_medium"
                     android:layout_weight="1"
                     android:text="Hurricane regular" />
 
@@ -237,6 +297,10 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/roboto_medium"
                 android:paddingLeft="20dp"
                 android:text="Tooltip sub title text family"/>
 
@@ -249,27 +313,36 @@
                 android:padding="10dp"
                 android:weightSum="3">
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_rubik_italic_tooltip_sub_family"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/white"
+                    android:background="@color/chart_bg"
+                    android:fontFamily="@font/roboto_medium"
                     android:layout_weight="1"
                     android:text="rubik italic" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_rubik_medium_tooltip_sub_family"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:background="@color/chart_bg"
+                    android:fontFamily="@font/roboto_medium"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_weight="1"
                     android:text="rubik medium" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_hurricane_regular_tooltip_sub_family"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
+                    android:background="@color/chart_bg"
+                    android:fontFamily="@font/roboto_medium"
                     android:text="Hurricane regular" />
 
             </LinearLayout>
@@ -278,6 +351,10 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="16dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/roboto_medium"
                 android:paddingLeft="25dp"
                 android:text="Tooltip title size"/>
 
@@ -292,6 +369,10 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/roboto_medium"
                 android:paddingLeft="25dp"
                 android:text="Tooltip subtitle size"/>
 

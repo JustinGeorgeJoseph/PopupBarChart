@@ -49,6 +49,12 @@ Initally there won't be any content you have add those contents dynamically.
         app:layout_constraintTop_toTopOf="parent" />
 ```
 
+ ### Attribute descriptions
+ 
+```
+app:chart_bar_round_corner="true" // [true,false] - sets whether bar need round edges or not.
+```
+
 
 # License
 ```xml

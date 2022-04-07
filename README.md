@@ -17,7 +17,8 @@ PopupBarChart :bar_chart: can show a tooltip on top of each bar with a text🤩
 We can use `PopupBarChart` without any customized attributes.<br>
 Initally there won't be any content you have add those contents dynamically.
 
-```    <com.justin.popupbarchart.PopupBarChart
+``` 
+<com.justin.popupbarchart.PopupBarChart
         android:id="@+id/customBarchart"
         android:layout_width="match_parent"
         android:background="@color/chart_bg"

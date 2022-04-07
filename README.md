@@ -12,6 +12,43 @@ PopupBarChart :bar_chart: can show a tooltip on top of each bar with a text🤩
 <img src="/demo/popup_bar_chart.jpg" width="300" height="1200"/>
 </p>
 
+## Usage
+### PopupBarChart in xml layout
+We can use `PopupBarChart` without any customized attributes.<br>
+Initally there won't be any content you have add those contents dynamically.
+
+```    <com.justin.popupbarchart.PopupBarChart
+        android:id="@+id/customBarchart"
+        android:layout_width="match_parent"
+        android:background="@color/chart_bg"
+        android:layout_height="300dp"
+
+        app:chart_bar_end_color="@color/green_end"
+        app:chart_bar_round_corner="true"
+        app:chart_bar_secondary_color="@color/grey_secondary"
+        app:chart_bar_size="@dimen/bar_size"
+        app:chart_bar_start_color="@color/green_start"
+
+        app:chart_bar_text_color="@color/white"
+        app:chart_bar_text_family="@font/roboto_medium"
+        app:chart_bar_text_size="14sp"
+
+        app:chart_bar_tooltip_bg_color="@android:color/black"
+
+        app:chart_bar_tooltip_subtitle_text_color="@color/white"
+        app:chart_bar_tooltip_subtitle_text_family="@font/rubik_medium"
+        app:chart_bar_tooltip_subtitle_text_size="10sp"
+
+        app:chart_bar_tooltip_title_text_color="@color/white"
+        app:chart_bar_tooltip_title_text_family="@font/rubik_medium"
+        app:chart_bar_tooltip_title_text_size="12sp"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+```
+
+
 # License
 ```xml
 Copyright 2022 JustinGeorgeJoseph (Justin George)

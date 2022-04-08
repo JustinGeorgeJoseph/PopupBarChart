@@ -54,6 +54,9 @@ Initally there won't be any content you have add those contents dynamically.
 ```
 app:chart_bar_round_corner="true" // [true,false] - sets whether bar need round edges or not.
 ```
+```
+app:chart_bar_size="16dp" //[Integer] - sets the width of each bars.
+```
 
 
 # License

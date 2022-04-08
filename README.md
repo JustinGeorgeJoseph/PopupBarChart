@@ -60,7 +60,8 @@ app:chart_bar_size="16dp" //[Integer] - sets the width of each bars.
 ```
 app:chart_bar_start_color="@color/green_start"
 app:chart_bar_end_color="@color/green_end"
-[Color] - sets the color of the bar char, start and end colors are used to support the gradient colors. If you need only one color set same color as start and end color.
+[Color] - sets the color of the bar char, start and end colors are used to support the gradient colors. 
+If you need only one color set same color as start and end color.
 ```
 
 # License

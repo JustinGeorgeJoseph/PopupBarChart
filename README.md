@@ -24,11 +24,11 @@ Initally there won't be any content you have add those contents dynamically.
         android:background="@color/chart_bg"
         android:layout_height="300dp"
 
-        app:chart_bar_end_color="@color/green_end"
         app:chart_bar_round_corner="true"
-        app:chart_bar_secondary_color="@color/grey_secondary"
         app:chart_bar_size="@dimen/bar_size"
         app:chart_bar_start_color="@color/green_start"
+        app:chart_bar_end_color="@color/green_end"
+        app:chart_bar_secondary_color="@color/grey_secondary"
 
         app:chart_bar_text_color="@color/white"
         app:chart_bar_text_family="@font/roboto_medium"
@@ -57,7 +57,11 @@ app:chart_bar_round_corner="true" // [true,false] - sets whether bar need round 
 ```
 app:chart_bar_size="16dp" //[Integer] - sets the width of each bars.
 ```
-
+```
+app:chart_bar_start_color="@color/green_start"
+app:chart_bar_end_color="@color/green_end"
+[Color] - sets the color of the bar char, start and end colors are used to support the gradient colors. If you need only one color set same color as start and end color.
+```
 
 # License
 ```xml

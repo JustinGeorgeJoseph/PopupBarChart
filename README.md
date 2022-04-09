@@ -54,15 +54,23 @@ Initally there won't be any content you have add those contents dynamically.
 ```
 app:chart_bar_round_corner="true" // [true,false] - sets whether bar need round edges or not.
 ```
+
 ```
 app:chart_bar_size="16dp" //[Integer] - sets the width of each bars.
 ```
+
 ```
-app:chart_bar_start_color="@color/green_start"
-app:chart_bar_end_color="@color/green_end" [Color] - sets the color of the bar char, start and end colors are 
+app:chart_bar_start_color="@color/green_start" //[Color]
+app:chart_bar_end_color="@color/green_end" //[Color] - sets the color of the bar char, start and end colors are 
                                                       used to support the gradient colors. If you need only 
                                                       one color set same color as start and end color.
 ```
+
+```
+app:chart_bar_secondary_color="@color/grey_secondary" //[Color] - Use secondary color as background color of progress bar
+```
+
+
 
 # License
 ```xml

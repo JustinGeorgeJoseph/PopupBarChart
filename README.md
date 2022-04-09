@@ -67,7 +67,8 @@ app:chart_bar_end_color="@color/green_end" //[Color] - sets the color of the bar
 ```
 
 ```
-app:chart_bar_secondary_color="@color/grey_secondary" //[Color] - Use secondary color as background color of progress bar
+app:chart_bar_secondary_color="@color/grey_secondary" //[Color] - Use secondary color as background 
+                                                                  color of progress bar
 ```
 
 

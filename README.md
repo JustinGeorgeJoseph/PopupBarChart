@@ -79,6 +79,9 @@ app:chart_bar_text_size="14sp" //[dimen] - size of text in the bar chart
 ```
 app:chart_bar_text_family="@font/roboto_medium" //[Font] - font family for the text in bar chart
 ```
+```
+app:chart_bar_tooltip_bg_color="@android:color/black" //[color] -  Tooltip's background color(default will be black)
+```
 
 # License
 ```xml

@@ -76,6 +76,9 @@ app:chart_bar_text_color="@color/white"//[color] - color code for text in the ba
 ```
 app:chart_bar_text_size="14sp" //[dimen] - size of text in the bar chart
 ```
+```
+app:chart_bar_text_family="@font/roboto_medium" //[Font] - font family for the text in bar chart
+```
 
 # License
 ```xml

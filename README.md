@@ -83,7 +83,10 @@ app:chart_bar_text_family="@font/roboto_medium" //[Font] - font family for the t
 app:chart_bar_tooltip_bg_color="@android:color/black" //[color] -  Tooltip's background color(default will be black)
 ```
 ```
-app:chart_bar_tooltip_subtitle_text_color="@color/white" //[color] - tooltip's subtitle text color
+app:chart_bar_tooltip_subtitle_text_color="@color/white" //[color] - Tooltip's subtitle text color
+```
+```
+app:chart_bar_tooltip_subtitle_text_size="10sp" //[dimen] - Tooltip's subtitle text size
 ```
 
 # License

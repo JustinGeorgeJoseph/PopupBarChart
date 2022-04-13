@@ -97,6 +97,9 @@ app:chart_bar_tooltip_title_text_size="12sp" //[dimen] - tooltip title text size
 ```
 app:chart_bar_tooltip_title_text_color="@color/white" //[color] - tooltip title text color
 ```
+```
+app:chart_bar_tooltip_title_text_family="@font/rubik_medium" //[Font] - tooltip title font family
+```
 
 # License
 ```xml

@@ -89,10 +89,13 @@ app:chart_bar_tooltip_subtitle_text_color="@color/white" //[color] - Tooltip's s
 app:chart_bar_tooltip_subtitle_text_size="10sp" //[dimen] - Tooltip's subtitle text size
 ```
 ```
-app:chart_bar_tooltip_subtitle_text_family="@font/rubik_medium"[Font] - Tooltip's subtitle font family
+app:chart_bar_tooltip_subtitle_text_family="@font/rubik_medium" //[Font] - Tooltip's subtitle font family
 ```
 ```
-app:chart_bar_tooltip_title_text_size="12sp" [dimen] - tooltip title text size
+app:chart_bar_tooltip_title_text_size="12sp" //[dimen] - tooltip title text size
+```
+```
+app:chart_bar_tooltip_title_text_color="@color/white" //[color] - tooltip title text color
 ```
 
 # License

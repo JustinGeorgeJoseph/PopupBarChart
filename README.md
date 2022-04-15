@@ -1,6 +1,6 @@
 <h1 align="center">PopupBarChart :bar_chart: </h1></br>
 <p align="center">
-PopupBarChart :bar_chart: can show a tooltip on top of each bar with a text🤩
+PopupBarChart :bar_chart: can shows a tooltip when user click on the bar :heart_eyes:🤩
 </p>
 
 <p align="center">

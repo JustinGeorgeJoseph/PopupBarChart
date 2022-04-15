@@ -12,6 +12,25 @@ PopupBarChart :bar_chart: can shows a tooltip when user click on the bar :heart_
 <img src="/demo/popup_bar_chart.jpg" width="300" height="1200"/>
 </p>
 
+## Including in your project 
+[![](https://jitpack.io/v/JustinGeorgeJoseph/PopupBarChart.svg)](https://jitpack.io/#JustinGeorgeJoseph/PopupBarChart)
+
+### Gradle 
+```
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+And add a dependency code to your **module**'s `build.gradle` file.
+```
+dependencies {
+	        implementation 'com.github.JustinGeorgeJoseph:PopupBarChart:Tag'
+	}
+```
+
 ## Usage
 ### PopupBarChart in xml layout
 We can use `PopupBarChart` without any customized attributes.<br>
